@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Startup Ideas</title>
+
+	<link href="../CSS/vendor/bootstrap.min.css" rel="stylesheet">
+	<style>
+        
+		body{
+            background-color: rgb(250, 239, 226);
+        }
+		/* Accordion container */
+		.accordion {
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			margin-bottom: 10px;
+		}
+
+		/* Accordion header */
+		.accordion-header {
+			background-color: #f2f2f2;
+			padding: 10px;
+			cursor: pointer;
+		}
+
+		/* Accordion content */
+		.accordion-content {
+			display: none;
+			padding: 10px;
+		}
+
+		/* Show content when accordion is active */
+		.accordion.active .accordion-content {
+			display: block;
+            background-color: white;
+		}
+	</style>
+</head>
+<body>
+	<h1 style="text-align: center; justify-content: center; color:darkred;">Startup Ideas</h1>
+
+	<div class="col-lg-12">
+
+	<div class="accordion">
+		<div class="accordion-header">Problem 1: High cost of solar panels</div>
+		<div class="accordion-content">
+			<p>Our solution is a new type of solar panel that is 50% cheaper than traditional panels, without sacrificing efficiency or durability.</p>
+			<p>We have developed a proprietary manufacturing process that reduces the cost of production while maintaining high quality standards.</p>
+		</div>
+	</div>
+
+	<div class="accordion">
+		<div class="accordion-header">Problem 2: Lack of affordable healthcare</div>
+		<div class="accordion-content">
+			<p>Our solution is an AI-powered health assistant that provides personalized recommendations and treatment plans for common health issues.</p>
+			<p>By leveraging the latest advances in machine learning and natural language processing, our platform can provide accurate and reliable advice to patients, reducing the need for expensive doctor visits and treatments.</p>
+		</div>
+	</div>
+
+	<div class="accordion">
+		<div class="accordion-header">Problem 3: Slow and inefficient logistics</div>
+		<div class="accordion-content">
+			<p>Our solution is a new type of autonomous delivery drone that can transport packages up to 10 times faster than traditional shipping methods.</p>
+			<p>Our drones are equipped with advanced sensors and AI algorithms that allow them to navigate complex environments and avoid obstacles, making deliveries faster and more efficient.</p>
+		</div>
+	</div>
+	
+	</div>
+
+	<script>
+		// Add click event listener to accordion headers
+		let accordionHeaders = document.querySelectorAll(".accordion-header");
+		accordionHeaders.forEach(header => {
+			header.addEventListener("click", () => {
+				// Toggle active class to show/hide accordion content
+				header.parentElement.classList.toggle("active");
+			});
+		});
+	</script>
+</body>
+</html>

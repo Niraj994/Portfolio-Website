@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Display Current Location in Map</title>
+<style>
+    body{
+        margin: 2px;
+        padding: 2%;
+        color: rgb(58, 49, 186);
+        text-align:center;
+    }
+
+    .up
+    {
+        margin: 2px;
+        padding: 2%;
+        color: rgb(58, 49, 186);
+        text-align:center;
+        margin-top: -20px;
+    }
+
+    .container{
+        text-align: center;
+    }
+
+    .btn{
+        background-color: rgb(166, 252, 233);
+        color: rgb(0, 0, 0);
+        width: 80px;
+        height: 25px;
+        text-align: center;
+        font-size: 15px;
+        margin-top: -10px;
+        margin-bottom: 15px;
+    }
+    .btn:hover{
+        background-color: rgb(143, 222, 205);
+        cursor: pointer;
+    }
+
+</style>
+</head>
+
+<body>
+
+    <h1 class="up" id="title">Click Show to Display Current Location in Map</h1>
+    <div class="container">
+        <div class="subcon">
+            <button id="find-me" class="btn" onclick="getlocation();">Show</button>
+            <!-- <button class="btn" onclick="reset();">Reset</button> -->
+        </div>
+        <!-- <p id="status" class="p"></p>
+        <a  class="p1" id="map-link" target="_blank"></a> -->
+    </div>
+
+    <p class="up" id="first"></p>
+    <div id="second" style="width: 1000px; height: 380px; margin-left: 20px;"></div>
+
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&v=weekly"
+      defer>
+    </script>
+    <script type="text/javascript">
+
+        var variable1 = document.getElementById("first");
+        function getlocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showLoc, errHand);
+        }
+        }
+        function showLoc(pos) {
+        variable1.innerHTML =
+        "Latitude: " +
+        pos.coords.latitude +
+        "<br>Longitude: " +
+        pos.coords.longitude;
+        latt = pos.coords.latitude;
+        long = pos.coords.longitude;
+        var lattlong = new google.maps.LatLng(latt, long);
+        var OPTions = {
+            center: lattlong,
+            zoom: 10,
+            mapTypeControl: true,
+            navigationControlOptions: {
+            style: google.maps.NavigationControlStyle.SMALL,
+            },
+        };
+        var mapg = new google.maps.Map(
+            document.getElementById("second"),
+            OPTions
+        );
+        var markerg = new google.maps.Marker({
+            position: lattlong,
+            map: mapg,
+            title: "You are here!",
+        });
+        }
+    
+        function errHand(err) {
+        switch (err.code) {
+            case err.PERMISSION_DENIED:
+            result.innerHTML =
+                "The application doesn't have the permission" +
+                "to make use of location services";
+            break;
+            case err.POSITION_UNAVAILABLE:
+            result.innerHTML = "The location of the device is uncertain";
+            break;
+            case err.TIMEOUT:
+            result.innerHTML = "The request to get user location timed out";
+            break;
+            case err.UNKNOWN_ERROR:
+            result.innerHTML =
+                "Time to fetch location information exceeded" +
+                "the maximum timeout interval";
+            break;
+        }
+        }
+
+        // function reset() {
+            //     var x1=document.getElementById("map-link");
+            //     var x2=document.getElementById("status");
+            //     if(x1.innerHTML!="") {
+            //         x2.innerHTML="click on show button to see a data"; 
+            //         x1.innerHTML="";
+            //         alert(x2);
+            //     }
+
+            //     else {
+            //         alert("nothing for errase");
+            //     }
+            // }
+    </script>
+</body>
+
+</html>
+        
